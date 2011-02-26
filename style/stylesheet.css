@@ -1,0 +1,106 @@
+body {
+  color: #535353;
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: normal;
+  background: #FDFDFD;
+}
+
+.title {
+  font-family: "Futura", "Helvetica Neue", "Arial", sans-serif;
+  font-size: 50px;
+}
+
+form {
+  margin: 10px 0px 20px 0;
+/*  background: #f5f5ff;*/
+}
+
+fieldset {
+  padding: 10px 20px;
+  border: 1px solid #CCC;
+}
+
+legend {
+  font-size: 20px;
+}
+
+.fine {
+  margin: 0 0 30px 0;
+  color: #a3a3aa;
+  font-style: italic;
+}
+
+.listless {
+  list-style-type:none;
+  margin: 0;
+  padding: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.space {
+  visibility: hidden;
+}
+
+a {
+  color: #009;
+}
+input[type=text] {
+  outline: none;
+  padding: 10px;
+  margin: 10px 0;
+  border: 3px solid #ccc;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+}
+
+select {
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  height: 24px;
+  margin: 0px 10px;
+  color: #999;
+  font-size: 11px;
+}
+
+/* Thanks Simuri*/
+input[type=submit], button {
+  font-size: 11px;
+  padding: 4px 10px;
+  margin: 10px 0;
+  color: #999;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+  border: none;  
+  cursor: pointer;
+  background: #ddd;
+  border: 1px solid #999;
+  background: #fff;
+}
+
+
+input[type=submit]:hover, button:hover {
+  background: -webkit-gradient(radial, center top, 200, center top, 30, from(hsla(0,0%,70%,0)), to(hsla(0,0%,100%,.7)));
+  background: -moz-radial-gradient(50% 0% 180deg, circle cover, hsla(0,0%,100%,.7) 50%, hsla(0,0%,90%,0) 100%);  
+  background:   -o-radial-gradient(50% 0% 180deg, circle cover, hsla(0,0%,100%,.7) 50%, hsla(0,0%,90%,0) 100%);  
+  background:     radial-gradient(50% 0% 180deg, circle cover, hsla(0,0%,100%,.7) 50%, hsla(0,0%,90%,0) 100%);  
+}
+
+input[type=submit]:active, button:active {
+  -webkit-transform: translateY(1px) scale(.98);
+     -moz-transform: translateY(1px) scale(.98);
+     -o-transform: translateY(1px) scale(.98);
+      transform: translateY(1px) scale(.98);
+
+  -webkit-box-shadow: inset rgba(0,0,0,.05) 0 -4px 5px, inset rgba(252,255,255,0.4) 0 4px 3px, rgba(0,0,0,0.05) 0 2px 2px;  
+     -moz-box-shadow: inset rgba(0,0,0,.05) 0 -4px 5px, inset rgba(252,255,255,0.4) 0 4px 3px, rgba(0,0,0,0.05) 0 2px 2px;  
+     -o-box-shadow: inset rgba(0,0,0,.05) 0 -4px 5px, inset rgba(252,255,255,0.4) 0 4px 3px, rgba(0,0,0,0.05) 0 2px 2px;  
+      box-shadow: inset rgba(0,0,0,.05) 0 -4px 5px, inset rgba(252,255,255,0.4) 0 4px 3px, rgba(0,0,0,0.05) 0 2px 2px;  
+}

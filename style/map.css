@@ -1,0 +1,272 @@
+.topbar {
+  height: 30px;
+  background-color: #1A1A1A;
+}
+
+.showbar {
+  height: 50px;
+  background-color: #252525;
+  border-top: 1px solid #313131;
+}
+
+.map {
+  
+}
+
+a {
+  color: #d5f3ff;
+}
+
+.blue {
+  color: #d5f3ff;
+  font-family: "Geneva";
+  font-size: 13px;
+  padding: 0px 0px 0px 18px;
+  line-height: 30px;
+}
+
+.red {color: #B43D54;}
+.green {color: #42A360;}
+
+.white {
+  color: #FFFFFF;
+  float: left;
+  font-size: 14px;
+  margin: 0px 0px 0px 0px;
+  padding: 0 1px 0 9px;
+}
+
+.separator {
+  color: #FFFFFF;
+}
+
+
+.lightest_gray {
+  color: #636363;
+  font-family: "Geneva";
+  font-size: 13px;
+}
+
+.light_gray {
+  color: #959595;
+  font-family: "Geneva";
+  font-size: 13px;
+}
+
+.gray {
+  color: #c2c2c2;
+  font-family: "Geneva";
+  font-size: 13px;
+}
+
+.yellow {
+  color: #fff799;
+  font-family: "Geneva";
+  font-size: 14px;
+}
+
+
+/*POLYMAPS*/
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #E5E0D9;
+}
+
+svg {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#copy {
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  padding-left: 5px;
+  font: 9px sans-serif;
+  color: #fff;
+  cursor: default;
+}
+
+#copy a {
+  color: #fff;
+}
+
+.compass .back {
+  fill: #eee;
+  fill-opacity: .8;
+}
+
+.compass .fore {
+  stroke: #999;
+  stroke-width: 1.5px;
+}
+
+.compass rect.back.fore {
+  fill: #999;
+  fill-opacity: .3;
+  stroke: #eee;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.compass .direction {
+  fill: none;
+}
+
+.compass .chevron {
+  fill: none;
+  stroke: #999;
+  stroke-width: 5px;
+}
+
+.compass .zoom .chevron {
+  stroke-width: 4px;
+}
+
+.compass .active .chevron, .compass .chevron.active {
+  stroke: #fff;
+}
+
+.compass.active .active .direction {
+  fill: #999;
+}
+
+
+/* DROPDOWN STYLEZ */
+
+.dropdown_filter {
+  font-family: "Geneva";
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 27px;
+  padding: 0px 0px 0px 1px;
+  line-height: 50px;
+  height: 50px;
+  float: left;
+  }
+  .dropdown_filter .show_me {
+    color: #fff799;
+    float: left;
+    font-size: 14px;
+    margin: 0px 0px 0px 0px;
+    padding: 0 1px 0 18px; }
+  .dropdown_filter select {
+    width: 100px; 
+    line-height: 50px;
+    }
+  .dropdown_filter .menuContainer {
+    border-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    background: #57708c url('dropdown.png') no-repeat scroll 141px 3.5px;
+    color: black;
+    float: left;
+    height: 26px;
+    margin: 12px 0px 0px 9px;
+    padding: 0px;
+    width: 169px;
+    outline-style: none; }
+    .dropdown_filter .menuContainer .selected {
+      font-family: "Geneva";
+      font-size: 12px;
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 200;
+      height: 29px;
+      line-height: 27px;
+      padding: 0 23px 0 0;
+      margin-left: 10px;
+      opacity: 1; }
+    .dropdown_filter .menuContainer div {
+      display: block;
+      padding: 0px 0px 0px 9px;
+      text-align: left !important;
+      width: 149px; }
+    .dropdown_filter .menuContainer ul.menu {
+      border-radius: 8px;
+      -moz-border-radius-bottomleft: 8px;
+      -moz-border-radius-bottomright: 8px;
+      -moz-border-radius-topleft: 8px;
+      -moz-border-radius-topright: 8px;
+      -webkit-border-top-left-radius: 8px;
+      -webkit-border-top-right-radius: 8px;
+      -webkit-border-bottom-left-radius: 8px;
+      -webkit-border-bottom-right-radius: 8px;
+      -webkit-box-shadow: 3px 3px 8px #555;
+      -moz-box-shadow: 3px 3px 8px #555;
+      box-shadow: 3px 3px 8px #555;
+      outline-style: none;
+      background: white;
+      color: black;
+      font-size: 0.85em;
+      height: auto;
+      left: 0;
+      list-style: none;
+      overflow: hidden;
+      position: absolute;
+      text-align: left;
+      top: 25px;
+      width: 169px;
+      z-index: 666; }
+      .dropdown_filter .menuContainer ul.menu * {
+        margin: 0;
+        padding: 0; }
+      .dropdown_filter .menuContainer ul.menu a {
+        color: black;
+        display: block;
+        text-decoration: none; }
+      .dropdown_filter .menuContainer ul.menu li {
+        border-top: 1px solid #4e647d;
+        background: #57708c;
+        height: 29px; }
+        .dropdown_filter .menuContainer ul.menu li .menuHover {
+          background: #fffee5;
+          color: black;
+          cursor: default; }
+        .dropdown_filter .menuContainer ul.menu li .menuOptionTitle {
+          font-weight: bold; }
+          .dropdown_filter .menuContainer ul.menu li .menuOptionTitle li {
+            border-left: 1px solid #cccccc;
+            font-weight: normal; }
+          .dropdown_filter .menuContainer ul.menu li .menuOptionTitle ul {
+            margin: 3px 0 0; }
+        .dropdown_filter .menuContainer ul.menu li .menuSelFocus {
+          background-position: auto; }
+        .dropdown_filter .menuContainer ul.menu li .menuSelFocus {
+          cursor: default; }
+        .dropdown_filter .menuContainer ul.menu li a {
+          outline-style: none;
+          font-weight: lighter;
+          font-size: 14px;
+          height: 29px;
+          line-height: 27px;
+          color: white;
+          display: block;
+          padding-left: 10px; }
+          .dropdown_filter .menuContainer ul.menu li a:focus {
+            -moz-outline-style: none; }
+        .dropdown_filter .menuContainer ul.menu li.last-li {
+          -moz-border-radius-bottomleft: 3px;
+          -moz-border-radius-bottomright: 3px;
+          -webkit-border-bottom-left-radius: 3px;
+          -webkit-border-bottom-right-radius: 3px; }
+      .dropdown_filter .menuContainer ul.menu .hiLite {
+        color: white; }
+        .dropdown_filter .menuContainer ul.menu .hiLite a {
+          background: #650101;
+          color: white;
+          font-size: 14px; }

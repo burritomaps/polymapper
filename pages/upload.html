@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <link href="fileuploader.css" rel="stylesheet" type="text/css">	
+    <link href="fileuploader.css" rel="stylesheet" type="text/css">	
+    <link href="stylesheet.css" rel="stylesheet" type="text/css">	
+    <script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="underscore.js"></script>
+    <style>    	
+    body {
+      font-size:13px;
+      font-family:arial, sans-serif;
+      width:700px;
+      margin:100px auto;
+    }
+    </style>	
+</head>
+<body>	
+  <h1 class="title">Civic API</h1>
+  <h2>Existing data sets:</h2>
+  <ul class="dbs">
+  </ul>
+  
+  <hr class="space">
+  
+  <h2>Add Data to Set</h2>
+  <form>
+    <fieldset>
+      <legend>Scraperwiki</legend>
+      <span class="instructions">Please enter your ScraperWiki scraper URL (e.g. http://scraperwiki.com/scrapers/open-food-data/)</span>
+      <hr class="space">
+      <input placeholder="URL" type="text" name="scraper" id="url" size="55" maxlength="255" class="text" >
+      <select name="set"></select>        
+      <input type="submit" name="submit" value="Submit" id="submit" class="button" ></li>
+    </fieldset>
+  </form>
+
+  <!--
+    No JavaScript written for this drag/drop yet
+  -->
+  <form>
+    <fieldset>
+      <legend>Drag 'n Drop data files</legend>
+      <hr class="space">
+      <hr class="space">
+      <h2 class="center">Drag Here</h2>
+      <hr class="space">
+      <hr class="space">
+      <hr class="space">
+      <hr class="space">
+    </fieldset>
+  </form>
+
+  <!--
+    No JavaScript written for this form
+  -->
+  <form>
+    <fieldset>
+      <legend>Single Entry</legend>
+      <span class="instructions">Enter a single piece of datum into the system</span>
+      <hr class="space">
+      <input placeholder="Start" type="text" name="start" size="55" maxlength="255" class="text" > <br>
+      <input placeholder="End" type="text" name="end" size="55" maxlength="255" class="text" > <br>
+      <input placeholder="geometry" type="text" name="scraper" size="55" maxlength="255" class="text" > <br>
+      <input placeholder="URL" type="text" name="scraper" size="55" maxlength="255" class="text" > <br>
+
+      <label>Category:</label><select name="set"></select> <br>
+
+      <label>Properties:</label>
+      <ul class="listless">
+        <li><input placeholder="color" type="text" size="35" maxlength="255" class="text" ></li>
+        <li><input placeholder="title" type="text" size="35" maxlength="255" class="text" ></li>
+        <li><input placeholder="description" type="text" size="35" maxlength="255" class="text" ></li>
+      </ul>
+          
+      <input type="submit" name="submit" value="Submit" id="submit" class="button" ></li>
+    </fieldset>
+  </form>
+
+  <script>
+    $(function(){
+      
+      // Setup code to initialize home view
+      // Should be moved elsewhere and be initialized by some kind of routing system
+      $.getJSON('http://127.0.0.1:5984/_all_dbs', function( dbs ){
+        _.each( dbs, function( db ) {
+
+          $( '<li>' , {
+            html: '<a href="/' + db + '/_all_docs">' + db + '</a>'
+          })
+          .appendTo('.dbs')
+
+          $( '<option>' , {
+            value : '/' + db + '/_all_docs">',
+            html : db
+          })
+          .appendTo('[name=set]')
+          
+        });
+      })
+      
+      
+      // Utility function for getting the scrapper wiki short name
+      // http://scraperwiki.com/scrapers/open-food-data/
+      function getShortName( scraper ) {
+        if ( scraper.substr( -1, 1 ) === "/") {
+          scraper = scraper.substr( 0, scraper.length -1 );
+        }
+        return scraper.split( "/" )[-1]
+      }
+      
+      // Log out the srapper response to the console
+      function verifyScraper( scraper ) {
+        var okay = false,
+            url = "http://api.scraperwiki.com/api/1.0/datastore/getdata?limit=1&name=",
+            shortName = getShortName( scraper );
+  
+        $.ajax({
+          url: url + shortName,
+          dataType: 'jsonp',
+          success: function( data ) {
+            function upload() {
+              $.ajax({
+                url: "/civicapi",
+                type: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                  "url": shortName
+                }),
+                success: function( response ){
+                   console.log( response );
+                 }
+              })
+            }
+            
+            if ( "status" in data[0] ) {
+              if ( data[0].status !== "Does not exist" )  {
+                upload();
+              }
+            } else {
+              upload()
+            }
+          }
+        });
+      }
+      
+      $( '#scraperForm' ).submit( function( e ){
+        e.preventDefault();
+        var val = $( '#url' ).val();
+        verifyScraper( val );
+      }) 
+    })
+  </script>    
+</body>
+</html>

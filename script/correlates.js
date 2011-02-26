@@ -30,7 +30,7 @@ $(function(){
   };
   
   function load(e){
-    var randColor = randomColor();
+    var cssObj = randColor = randomColor();
     
     for (var i = 0; i < e.features.length; i++) {
       
@@ -38,10 +38,21 @@ $(function(){
       
       //console.log(feature.data.geometry.type == 'LineString' ? 'none' : randColor)
       
-      $(feature.element).css({
-        fill: randColor,
-        opacity: .9 
-      })
+      if( feature.data.geometry.type == 'LineString' || feature.data.geometry.type == 'MultiLineString' ) {
+        cssObj = {
+          fill: 'none',
+          stroke: randColor,
+          opacity: .9 
+        }
+      } else {
+        cssObj = {
+          fill: randColor,
+          opacity: .9 
+        }
+        
+      }
+      
+      $(feature.element).css(cssObj)
     }    
   }
 
@@ -75,11 +86,11 @@ $(function(){
   var removeDataset = function( dataset ) {
     map.remove( featuresCache[dataset] );
   }
-  
+
   var getBB = function(){
     return map.extent()[0].lon + "," + map.extent()[0].lat + "," + map.extent()[1].lon + "," + map.extent()[1].lat;
   }
-  
+
   //Interaction
   $.ajax({ 
     url: "http://civicapi.com/datasets?",
@@ -105,5 +116,5 @@ $(function(){
       removeDataset( dataSet );
     }
   });
-  
+
 });

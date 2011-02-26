@@ -3,6 +3,8 @@ var map, po, currentData, geoJson;
 $(function(){  
   po = org.polymaps;
   geoJson = po.geoJson();
+  
+  var featuresCache = {};
 
   map = po.map()
       .container($('.map')[0].appendChild(po.svg("svg")))
@@ -29,11 +31,17 @@ $(function(){
   
   function load(e){
     var randColor = randomColor();
+    
     for (var i = 0; i < e.features.length; i++) {
-      var feature = e.features[i];
-      console.log(e)
-      $(feature.element).css({fill: randColor,opacity: .7})
       
+      var feature = e.features[i];
+      
+      //console.log(feature.data.geometry.type == 'LineString' ? 'none' : randColor)
+      
+      $(feature.element).css({
+        fill: randColor,
+        opacity: .9 
+      })
     }    
   }
 
@@ -48,19 +56,54 @@ $(function(){
     });
   }
   
-  var showDataset = window.showDataset = function( dataset ) {
+  var showDataset = function( dataset ) {
     var bbox = getBB();
-    fetchFeatures(bbox, dataset, function(data){
-      map.add(
-        geoJson
-          .features(data.features)
-          .on("load", load) 
-      );
+
+    fetchFeatures( bbox, dataset, function( data ){
+
+      var feature = po.geoJson()
+            .features( data.features )
+            .on( "show", load );
+
+      featuresCache[dataset] = feature;
+          
+      map.add( feature );
+
     })
+  }
+
+  var removeDataset = function( dataset ) {
+    map.remove( featuresCache[dataset] );
   }
   
   var getBB = function(){
     return map.extent()[0].lon + "," + map.extent()[0].lat + "," + map.extent()[1].lon + "," + map.extent()[1].lat;
   }
+  
+  //Interaction
+  $.ajax({ 
+    url: "http://civicapi.com/datasets?",
+    dataType: 'jsonp', 
+    success: function(data){ 
+      $.each(data.datasets, function( i, item ){
+        $('<li>', {
+          class: item.name,
+          html: '<input type="checkbox"/>' + item.name.replace('_', ' ')
+        })
+        .appendTo('.sidebar')
+      })
+    } 
+  }); 
+  
+  $('[type=checkbox]').live('click', function(){
+    var input = $(this)
+        dataSet = 'bos_' + input.parent().attr('class');
+    
+    if( $(this).attr('checked') ) {
+      showDataset( dataSet );
+    } else {
+      removeDataset( dataSet );
+    }
+  });
   
 });

@@ -11,34 +11,8 @@
   <script type="text/javascript" src="script/jquery-1.4.4.min.js"></script>
   <script type="text/javascript" src="script/jquery.selectbox.js"></script>
   <script type="text/javascript" src="script/correlates.js"></script>
-  <script>
-    $.ajax({ 
-      url: "http://civicapi.com/datasets?",
-      dataType: 'jsonp', 
-      success: function(data){ 
-        $.each(data.datasets, function( i, item ){
-          $('<li>', {
-            class: item.name,
-            html: '<input type="checkbox"/>' + item.name.replace('_', ' ')
-          })
-          .appendTo('.sidebar')
-        })
-      } 
-    }); 
-    
-    $('[type=checkbox]').live('click', function(){
-      showDataset('bos_' + $(this).parent().attr('class'));
-    });
-    
-  </script>
 </head>
 <body>
-  <!-- <div class="topbar">
-    <span class="blue">Boston Fire Hydrants</span>
-    <span class="separator"> — </span>
-    <span class="lightest_gray"><a href="http://github.com/maxogden/polymapper">download source code</a></span>
-  </div> -->
-
   <div class="map"></div>
   <ul class="sidebar">
   </ul>

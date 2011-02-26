@@ -42,6 +42,7 @@ $(function(){
         cssObj = {
           fill: 'none',
           stroke: randColor,
+          strokeWidth:2,
           opacity: .9 
         }
       } else {
@@ -49,15 +50,15 @@ $(function(){
           fill: randColor,
           opacity: .9 
         }
-        
       }
-      
-      $(feature.element).css(cssObj)
-    }    
+
+      $( feature.element )
+        .css( cssObj )
+    }
   }
 
   function fetchFeatures(bbox, dataset, callback) {
-	  $.ajax({
+    $.ajax({
       url: "http://civicapi.com/" + dataset,
       dataType: 'jsonp',
       data: {
@@ -66,7 +67,7 @@ $(function(){
       success: callback
     });
   }
-  
+
   var showDataset = function( dataset ) {
     var bbox = getBB();
 

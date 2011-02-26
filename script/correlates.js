@@ -36,13 +36,16 @@ $(function(){
     });
   }
   
-  function showDataset(dataset) {
-    var bbox = map.extent()[0].lon + "," + map.extent()[0].lat + "," + map.extent()[1].lon + "," + map.extent()[1].lat;
+  var showDataset = window.showDataset = function( dataset ) {
+    var bbox = getBB();
     currentDataset = dataset;
     fetchFeatures(bbox, dataset, function(data){
       map.add(geoJson.features(data.features));
     })
   }
   
-  showDataset('bos_fire_hydrants');
+  var getBB = function(){
+    return map.extent()[0].lon + "," + map.extent()[0].lat + "," + map.extent()[1].lon + "," + map.extent()[1].lat;
+  }
+  
 });

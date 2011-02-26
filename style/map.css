@@ -10,7 +10,12 @@
 }
 
 .map {
-  
+  width: 90%;
+}
+.sidebar {
+  position: absolute;
+  left: 82%;
+  top: 10px;
 }
 
 a {

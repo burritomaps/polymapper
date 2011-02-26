@@ -1,9 +1,6 @@
 var map, po, currentData, geoJson;
 
-$(function(){
-  $("#filter_select_1").sSelect();
-  $("#filter_select_2").sSelect();
-  
+$(function(){  
   po = org.polymaps;
   geoJson = po.geoJson();
 
@@ -24,6 +21,21 @@ $(function(){
   map.add(po.compass()
       .pan("none"));
       
+  
+  function randomColor(colors) {
+    var sick_neon_colors = ["#CB3301", "#FF0066", "#FF6666", "#FEFF99", "#FFFF67", "#CCFF66", "#99FE00", "#EC8EED", "#FF99CB", "#FE349A", "#CC99FE", "#6599FF", "#03CDFF", "#FFFFFF"];
+    return sick_neon_colors[Math.floor(Math.random()*sick_neon_colors.length)];
+  };
+  
+  function load(e){
+    var randColor = randomColor();
+    for (var i = 0; i < e.features.length; i++) {
+      var feature = e.features[i];
+      console.log(e)
+      $(feature.element).css({fill: randColor,opacity: .7})
+      
+    }    
+  }
 
   function fetchFeatures(bbox, dataset, callback) {
 	  $.ajax({
@@ -38,9 +50,12 @@ $(function(){
   
   var showDataset = window.showDataset = function( dataset ) {
     var bbox = getBB();
-    currentDataset = dataset;
     fetchFeatures(bbox, dataset, function(data){
-      map.add(geoJson.features(data.features));
+      map.add(
+        geoJson
+          .features(data.features)
+          .on("load", load) 
+      );
     })
   }
   

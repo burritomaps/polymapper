@@ -2,10 +2,13 @@ body {
   overflow: hidden;
   background-color: #f4f4f4;
 }
-.showbar {
-  height: 50px;
+.topbar {
   background-color: #252525;
   border-top: 1px solid #313131;
+}
+
+path, circle {
+  stroke: #000;
 }
 
 .map {

@@ -74,7 +74,7 @@ $(function(){
     var bbox = getBB();
 
     fetchFeatures( bbox, dataset, function( data ){
-
+      console.log(JSON.stringify(data.features));
       var feature = po.geoJson()
             .features( data.features )
             .on( "show", load );
@@ -111,16 +111,38 @@ $(function(){
   
   // Interaction/event binding
   $('[type=checkbox]').live('click', function(){
-    var input = $(this)
-        dataSet = 'bos_' + input.parent().attr('class');
-    
-    if( $(this).attr('checked') ) {
-      showDataset( dataSet );
+    if($(this).parents('li').hasClass('live_trains')) {
+      $.ajax({                                                                                      
+        url: "http://jsonpify.heroku.com?resource=http://openmbta.org/ocd/train_trajectories.json",
+        dataType: 'jsonp',                                                                          
+        success: function(data){                                                                    
+          t = JSON.parse(data);
+          $.each(["Red", "Blue", "Orange"], function(i, color){
+            var r = t[color].map(function(col){ 
+              var l = col.arriving.geo;
+              return { "type": "Feature",
+                "geometry": {'type': 'Point', 'coordinates': [l[0], l[1]]}
+              };
+            })
+
+            map.add( po.geoJson().features( r ).on('load', load));
+          })
+          
+        }
+      });
     } else {
-      removeDataset( dataSet );
+      var input = $(this)
+          dataSet = 'bos_' + input.parent().attr('class');
+
+      if( $(this).attr('checked') ) {
+        showDataset( dataSet );
+      } else {
+        removeDataset( dataSet );
+      }      
     }
   });
 
+  
 
 
   //Slider

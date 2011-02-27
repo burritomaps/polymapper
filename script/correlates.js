@@ -136,16 +136,21 @@ $(function(){
   $( ".date" ).html( $( ".slider" ).slider('values')[ 0 ] + " - "+ $( ".slider" ).slider('values')[ 1 ] );
 
   $(".gencalls").click(function(){
+    $('#dialog ul').html("");
     $('[type=checkbox]').each(function(i, item){
       var input = $(this),
           dataSet = 'bos_' + input.parent().attr('class');
 
       if( $(this).attr('checked') ) {
-        $('#dialog').html( "http://civicapi.com/" + dataSet + '?' + $.param({"bbox": getBB()})  );
+        $('#dialog ul').append( "<li><a href='http://civicapi.com/" + dataSet + "?" + $.param({"bbox": getBB()}) + "'>" + dataSet + "</a></li>" );
       }
     });
     
-    $('#dialog').dialog({modal: true})
+    $('#dialog').dialog({
+      modal: true,
+      title: 'API Calls',
+      widht: 400
+    })
   })
   
 });

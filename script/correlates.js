@@ -58,6 +58,7 @@ $(function(){
   }
 
   function fetchFeatures(bbox, dataset, callback) {
+
     $.ajax({
       url: "http://civicapi.com/" + dataset,
       dataType: 'jsonp',
@@ -66,6 +67,7 @@ $(function(){
       },
       success: callback
     });
+
   }
 
   var showDataset = function( dataset ) {
@@ -78,7 +80,7 @@ $(function(){
             .on( "show", load );
 
       featuresCache[dataset] = feature;
-          
+            
       map.add( feature );
 
     })
@@ -92,7 +94,7 @@ $(function(){
     return map.extent()[0].lon + "," + map.extent()[0].lat + "," + map.extent()[1].lon + "," + map.extent()[1].lat;
   }
 
-  //Interaction
+  // Get all sets
   $.ajax({ 
     url: "http://civicapi.com/datasets?",
     dataType: 'jsonp', 
@@ -107,6 +109,7 @@ $(function(){
     } 
   }); 
   
+  // Interaction/event binding
   $('[type=checkbox]').live('click', function(){
     var input = $(this)
         dataSet = 'bos_' + input.parent().attr('class');
@@ -118,4 +121,18 @@ $(function(){
     }
   });
 
+
+
+  //Slider
+  $( ".slider" ).slider({
+    range: true,
+    min: 1900,
+    max: 2011,
+    values: [ 2003, 2008 ],
+    slide: function( event, ui ) {
+      $( ".date" ).html( ui.values[ 0 ] + " - "+ ui.values[ 1 ] );
+    }
+  });
+  $( ".date" ).html( $( ".slider" ).slider('values')[ 0 ] + " - "+ $( ".slider" ).slider('values')[ 1 ] );
+  
 });

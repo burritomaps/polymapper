@@ -116,15 +116,15 @@ $(function(){
         url: "http://jsonpify.heroku.com?resource=http://openmbta.org/ocd/train_trajectories.json",
         dataType: 'jsonp',                                                                          
         success: function(data){                                                                    
-          t = JSON.parse(data);
+          var t = JSON.parse(data);
           $.each(["Red", "Blue", "Orange"], function(i, color){
-            var r = t[color].map(function(col){ 
+            var r = t[color].map(function(col) { 
               var l = col.arriving.geo;
               return { "type": "Feature",
                 "geometry": {'type': 'Point', 'coordinates': [l[0], l[1]]}
               };
             })
-
+            
             map.add( po.geoJson().features( r ).on('load', load));
           })
           
@@ -133,7 +133,6 @@ $(function(){
     } else {
       var input = $(this)
           dataSet = 'bos_' + input.parent().attr('class');
-
       if( $(this).attr('checked') ) {
         showDataset( dataSet );
       } else {
@@ -141,9 +140,6 @@ $(function(){
       }      
     }
   });
-
-  
-
 
   //Slider
   $( ".slider" ).slider({
@@ -155,6 +151,7 @@ $(function(){
       $( ".date" ).html( ui.values[ 0 ] + " - "+ ui.values[ 1 ] );
     }
   });
+  
   $( ".date" ).html( $( ".slider" ).slider('values')[ 0 ] + " - "+ $( ".slider" ).slider('values')[ 1 ] );
 
   $(".gencalls").click(function(){

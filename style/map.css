@@ -17,7 +17,7 @@ path, circle {
   top: 0px;
   right: 250px;
   left: 0px;
-  bottom: 75px;
+  bottom: 115px;
 }
   
 svg.map {
@@ -41,9 +41,15 @@ svg.map {
   margin: 10px 0 10px 1%;
 }
 
-.slider {
+button {
   position: absolute !important;
   bottom: 10px;
+  margin: 0 0 10px 70%;
+}
+
+.slider {
+  position: absolute !important;
+  bottom: 60px;
   margin: 0 0 10px 1%;
   width: 79%;
 }
@@ -171,4 +177,10 @@ svg {
 
 .compass.active .active .direction {
   fill: #999;
+}
+#dialog ul {
+  list-style-type: none;
+  padding: 0px;
+  font-size: 12px;
+  font-family: georgia;
 }

@@ -1,15 +1,14 @@
 body {
   overflow: hidden;
-//  background-color: #f4f4f4;
 }
 .topbar {
-//  background-color: #252525;
-  border-top: 1px solid #313131;
+/*  background-color: #252525;
+*/  border-top: 1px solid #313131;
 }
 
 .bottombar {
-  background-color: #252525;
-  border-top: 1px solid #313131;
+/*  background-color: #252525;
+*/  border-top: 1px solid #313131;
 }
 
 path, circle {
@@ -28,10 +27,10 @@ path, circle {
   width: 250px;
 }
 
-a {
+/*a {
   color: #d5f3ff;
 }
-
+*/
 .blue {
   color: #d5f3ff;
   font-family: "Geneva";
@@ -89,7 +88,7 @@ html, body {
 
 body {
   margin: 0;
-  background: #E5E0D9;
+/*  background: #E5E0D9;*/
 }
 
 svg {

@@ -1,9 +1,9 @@
 body {
   color: #535353;
-  font-family: Arial;
   font-size: 13px;
   font-weight: normal;
   background: #FDFDFD;
+  font-family: "Futura", "Helvetica Neue", "Arial", sans-serif;
 }
 
 .title {
@@ -46,7 +46,7 @@ legend {
 }
 
 a {
-  color: #009;
+  color: blue;
 }
 input[type=text] {
   outline: none;

@@ -80,7 +80,7 @@ $(function(){
             .on( "show", load );
 
       featuresCache[dataset] = feature;
-            
+
       map.add( feature );
 
     })
@@ -134,5 +134,18 @@ $(function(){
     }
   });
   $( ".date" ).html( $( ".slider" ).slider('values')[ 0 ] + " - "+ $( ".slider" ).slider('values')[ 1 ] );
+
+  $(".gencalls").click(function(){
+    $('[type=checkbox]').each(function(i, item){
+      var input = $(this),
+          dataSet = 'bos_' + input.parent().attr('class');
+
+      if( $(this).attr('checked') ) {
+        $('#dialog').html( "http://civicapi.com/" + dataSet + '?' + $.param({"bbox": getBB()})  );
+      }
+    });
+    
+    $('#dialog').dialog({modal: true})
+  })
   
 });

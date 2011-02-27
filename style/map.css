@@ -12,12 +12,15 @@ path, circle {
   stroke: #000;
 }
 
-.map {
-  width: 90%;
+.map_container {
+  position: absolute;
+  top: 0px;
+  right: 250px;
+  left: 0px;
+  bottom: 75px;
+}
   
 svg.map {
-  width: 80%;
-  height: 90%;
   border-bottom: 1px solid #333;
   border-right: 1px solid #333;
 }
@@ -31,10 +34,16 @@ svg.map {
   width: 18%;
   padding: 0px 5px 90px 5px;
 }
+
 .date {
+  position: absolute;
+  bottom: 35px;
   margin: 10px 0 10px 1%;
 }
+
 .slider {
+  position: absolute !important;
+  bottom: 10px;
   margin: 0 0 10px 1%;
   width: 79%;
 }

@@ -7,7 +7,7 @@ $(function(){
   var featuresCache = {};
 
   map = po.map()
-      .container($('.map')[0].appendChild(po.svg("svg")))
+      .container($('.map_container')[0].appendChild(po.svg("svg")))
       .center({lat: 42.3584308, lon: -71.0597732})
       .zoom(17)
       .add(po.interact())
@@ -96,7 +96,7 @@ $(function(){
 
   // Get all sets
   $.ajax({ 
-    url: "http://civicapi.com/datasets?",
+    url: "http://civicapi.com/datasets",
     dataType: 'jsonp', 
     success: function(data){ 
       $.each(data.datasets, function( i, item ){

@@ -1,16 +1,26 @@
 var map, po, currentData, geoJson;
 
-$(function() {
-  var mapel = $('div.map_container');
+// Should probably abstract out the couch url and the db prefix and the version and the starting map center.
+var config = {
+	couchUrl: 'http://civicapi.com',
+	dbPrefix: 'bos_',
+	version: '',
+	rewrite: '',
+	mapCenterLat: 39.9522783,
+	mapCenterLng: -75.1636505,
+	mapStartZoom: 14
+};
+
+$(function(){  
   po = org.polymaps;
   geoJson = po.geoJson();
+  config.mapContainer = $('div.map_container');
   
   var featuresCache = {};
-
   map = po.map()
-      .container($('.map_container')[0].appendChild(po.svg("svg")))
-      .center({lat: 42.3584308, lon: -71.0597732})
-      .zoom(17)
+      .container(config.mapContainer[0].appendChild(po.svg("svg")))
+      .center({lat: config.mapCenterLat, lon: config.mapCenterLng})
+      .zoom(config.mapStartZoom)
       .add(po.interact())
       .add(po.hash());
 
@@ -22,7 +32,7 @@ $(function() {
       .hosts(["a.", "b.", "c.", ""])));
 
   map.add(po.compass()
-      .pan("none"));  
+      .pan("none"));
   
   function randomColor(colors) {
     var sick_neon_colors = ["#CB3301", "#FF0066", "#FF6666", "#FEFF99", "#FFFF67", "#CCFF66", "#99FE00", "#EC8EED", "#FF99CB", "#FE349A", "#CC99FE", "#6599FF", "#03CDFF"];
@@ -74,7 +84,7 @@ $(function() {
 
   function fetchFeatures(bbox, dataset, callback) {
     $.ajax({
-      url: "http://civicapi.com/" + dataset,
+      url: config.couchUrl + config.rewrite + "/" + config.version + "/" + dataset,
       dataType: 'jsonp',
       data: {
         "bbox": bbox
@@ -106,13 +116,13 @@ $(function() {
   var getBB = function(){
     return map.extent()[0].lon + "," + map.extent()[0].lat + "," + map.extent()[1].lon + "," + map.extent()[1].lat;
   }
-  
+   console.log(config.mapContainer)
   var onPointClick = function( event ) {
     
    var coor = event.data.geo.coordinates,
        props = event.data.props;
-
-   mapel
+  
+   config.mapContainer
      .maptip(this)
      .map(map)
      .data(props)
@@ -165,7 +175,7 @@ $(function() {
 
   // Get all sets
   $.ajax({ 
-    url: "http://civicapi.com/datasets",
+    url: config.couchUrl + config.rewrite + "/datasets",
     dataType: 'jsonp', 
     success: function(data){ 
       $.each(data.datasets, function( i, item ){
@@ -185,15 +195,15 @@ $(function() {
         url: "http://jsonpify.heroku.com?resource=http://openmbta.org/ocd/train_trajectories.json",
         dataType: 'jsonp',                                                                          
         success: function(data){                                                                    
-          var t = JSON.parse(data);
+          t = JSON.parse(data);
           $.each(["Red", "Blue", "Orange"], function(i, color){
-            var r = t[color].map(function(col) { 
+            var r = t[color].map(function(col){ 
               var l = col.arriving.geo;
               return { "type": "Feature",
                 "geometry": {'type': 'Point', 'coordinates': [l[0], l[1]]}
               };
             })
-            
+
             map.add( po.geoJson().features( r ).on('load', load));
           })
           
@@ -201,7 +211,8 @@ $(function() {
       });
     } else {
       var input = $(this)
-          dataSet = 'bos_' + input.parent().attr('class');
+          dataSet = config.dbPrefix + input.parent().attr('class');
+
       if( $(this).attr('checked') ) {
         showDataset( dataSet );
       } else {
@@ -227,17 +238,17 @@ $(function() {
     $('#dialog ul').html("");
     $('[type=checkbox]').each(function(i, item){
       var input = $(this),
-          dataSet = 'bos_' + input.parent().attr('class');
+          dataSet = config.dbPrefix + input.parent().attr('class');
 
       if( $(this).attr('checked') ) {
-        $('#dialog ul').append( "<li><a href='http://civicapi.com/" + dataSet + "?" + $.param({"bbox": getBB()}) + "'>" + dataSet + "</a></li>" );
+        $('#dialog ul').append( "<li><a href='"+config.couchUrl + config.rewrite + "/"+config.version+"/" + dataSet + "?" + $.param({"bbox": getBB()}) + "'>" + dataSet + "</a></li>" );
       }
     });
     
     $('#dialog').dialog({
       modal: true,
       title: 'API Calls',
-      widht: 400
+      width: 400
     })
   })
   

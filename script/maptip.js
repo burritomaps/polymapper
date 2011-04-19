@@ -5,6 +5,7 @@
  * http://labratrevenge.com
  * Released under the MIT License
  */
+
 ;(function($) {
   function MapTip(el, target) {
     this.canvas = el

@@ -108,7 +108,7 @@ $(function() {
     var bbox = getBB();
 
     fetchFeatures( bbox, dataset, function( data ){
-
+      console.log(JSON.stringify(data));
       var feature = po.geoJson()
             .features( data.features )
             .on( "show", load );
@@ -237,17 +237,17 @@ $(function() {
   });
 
   //Slider
-  $( ".slider" ).slider({
-    range: true,
-    min: 1900,
-    max: 2011,
-    values: [ 2003, 2008 ],
-    slide: function( event, ui ) {
-      $( ".date" ).html( ui.values[ 0 ] + " - "+ ui.values[ 1 ] );
-    }
-  });
+  // $( ".slider" ).slider({
+  //   range: true,
+  //   min: 1900,
+  //   max: 2011,
+  //   values: [ 2003, 2008 ],
+  //   slide: function( event, ui ) {
+  //     $( ".date" ).html( ui.values[ 0 ] + " - "+ ui.values[ 1 ] );
+  //   }
+  // });
   
-  $( ".date" ).html( $( ".slider" ).slider('values')[ 0 ] + " - "+ $( ".slider" ).slider('values')[ 1 ] );
+  // $( ".date" ).html( $( ".slider" ).slider('values')[ 0 ] + " - "+ $( ".slider" ).slider('values')[ 1 ] );
 
   $(".gencalls").click(function(){
     $('#dialog ul').html("");

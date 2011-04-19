@@ -4,8 +4,13 @@ body {
   font-family: georgia;
 }
 .topbar {
-  background-color: #252525;
-  border-top: 1px solid #313131;
+/*  background-color: #252525;
+*/  border-top: 1px solid #313131;
+}
+
+.bottombar {
+/*  background-color: #252525;
+*/  border-top: 1px solid #313131;
 }
 
 path, circle {
@@ -31,7 +36,7 @@ svg.map {
   position: absolute;
   right: 0px;
   top: 10px;
-  width: 18%;
+  width: 250px;
   padding: 0px 5px 90px 5px;
 }
 
@@ -52,12 +57,15 @@ button {
   bottom: 60px;
   margin: 0 0 10px 1%;
   width: 79%;
+=======
+  width: 250px;
+>>>>>>> 1afa34316ee9febb95ee07420fbf7ffdd0b12421
 }
 
-a {
+/*a {
   color: #d5f3ff;
 }
-
+*/
 .blue {
   color: #d5f3ff;
   font-family: "Geneva";
@@ -115,7 +123,7 @@ html, body {
 
 body {
   margin: 0;
-  background: #E5E0D9;
+/*  background: #E5E0D9;*/
 }
 
 svg {
@@ -178,13 +186,13 @@ svg {
 .compass.active .active .direction {
   fill: #999;
 }
+
 #dialog ul {
   list-style-type: none;
   padding: 0px;
   font-size: 12px;
   font-family: georgia;
 }
-
 
 .maptip h2{min-height:14px;font-size:14px;background:#e0e0e0 -webkit-gradient(linear,left top,left bottom,from(#e0e0e0),to(#cfcfcf));background:#e0e0e0 -moz-linear-gradient(top,#e0e0e0,#cfcfcf);-moz-box-shadow:inset 0 1px -1px #fff;-webkit-box-shadow:inset 0 -1px 1px rgba(255,255,255,0.3);box-shadow:inset 0 -2px 1px rbga(255,255,255,0.4);border-bottom:1px solid #bbb;padding:5px;position:relative;}.maptip h2 span.badge{font-size:16px;}.maptip h2 a{color:#333;}
 .maptip span.close{font-family:sans-serif;top:5px;right:5px;position:absolute;font-weight:normal;color:rgba(100,100,100,0.7);cursor:pointer;}

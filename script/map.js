@@ -6,8 +6,8 @@ var config = {
 	dbPrefix: 'bos_',
 	version: '',
 	rewrite: '',
-	mapCenterLat: 39.9522783,
-	mapCenterLng: -75.1636505,
+	mapCenterLat: 42.3584308,
+	mapCenterLng: -71.0597732,
 	mapStartZoom: 14
 };
 

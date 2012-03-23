@@ -3,43 +3,23 @@ var path = require('path')
 
 ddoc = 
   { "_id":'_design/polymapper',
-    "description": "SVG GeoJSON viewer",
+    "description": "Simple GeoJSON visualizer using Polymaps",
     "name": "Polymapper",
     "rewrites": [
       {
-        "to": "favicon.ico",
-        "from": "favicon.ico"
-      },
-      {
-        "to": "style/*",
-        "from": "style/*"
-      },
-      {
-        "to": "script/*",
-        "from": "script/*"
-      },
-      {
-        "to": "images/*",
-        "from": "images/*"
-      },
-      {
         "to": "index.html",
-        "from": ""
+        "from": "/"
       },
       {
         "to": "/_spatiallist/geojson/full",
         "from": "/data"
       },
       {
-        "to": "./",
-        "from": "ddoc"
-      },
-      {
-        "to": "../../",
+        "to": "/../../",
         "from": "api"
       },
       {
-        "to": "../../*",
+        "to": "/../../*",
         "from": "api/*"
       },
       {
@@ -48,7 +28,8 @@ ddoc =
         "query": {
           "bbox": "-180,-90,180,90"
         }
-      }
+      },
+      {"from":"/*", "to":'*'}
     ]
   };
 

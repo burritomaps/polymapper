@@ -40,9 +40,10 @@ svg.map {
 .map_header {
   position:absolute;
   left: 10px;
-  bottom: 10px;
+  bottom: 4px;
   width: 400px;
   padding-right: 35px;
+  font-size: 11px;
 }
 
 .date {
